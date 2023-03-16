@@ -21,12 +21,13 @@ int main()
     do
     {
         cout << "\nEnter a guess (1-100):" << endl;
+
         cin >> guess;
         tries++;
 
         veryClose = secretNumber - guess;
 
-        if (veryClose <= 5 && veryClose >= -5)
+        if (veryClose <= 5 && veryClose >= -5 && veryClose != 0)
         {
             cout << "Muy cerca!!\n";
         }
