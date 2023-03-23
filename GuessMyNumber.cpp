@@ -2,16 +2,17 @@
 #include<cstdlib> //Trabaja con números random
 using namespace std;
 
+
+int Limits(int min, int max);
 int main()
 {
-
     srand(static_cast<unsigned int>(time(0)));
     //srand(time(NULL));
     int randomNumber = rand();
-    int secretNumber = (randomNumber % 100) + 1;
-    int guess;
+    int secretNumber = (randomNumber % 200) + 50;
     int tries = 0;
     int veryClose;
+    int guess;
 
     cout << "GUESS MY NUMBER" << endl;
     cout << "Adivina el número en el menor número de intentos posible." << endl;
@@ -20,9 +21,8 @@ int main()
     cout << secretNumber;
     do
     {
-        cout << "\nEnter a guess (1-100):" << endl;
+        guess = Limits(50, 200);
 
-        cin >> guess;
         tries++;
 
         veryClose = secretNumber - guess;
@@ -43,4 +43,17 @@ int main()
 
         }
     } while (guess != secretNumber);
+}
+
+int Limits(int min, int max)
+{
+    int guess;
+    do
+    {
+        cout << "\nEnter a guess (50-200):" << endl;
+
+        cin >> guess;
+    } while (guess > max || guess < min);
+
+    return guess;
 }
