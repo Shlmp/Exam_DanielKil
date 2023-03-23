@@ -1,15 +1,16 @@
 #include <iostream>
+#include <string>
 #include<cstdlib> //Trabaja con números random
 using namespace std;
 
 
-int Limits(int min, int max);
+int askNumber(string question, int max, int min = 1);
 int main()
 {
     srand(static_cast<unsigned int>(time(0)));
     //srand(time(NULL));
     int randomNumber = rand();
-    int secretNumber = (randomNumber % 200) + 50;
+    int secretNumber = (randomNumber % 100) + 1;
     int tries = 0;
     int veryClose;
     int guess;
@@ -21,7 +22,7 @@ int main()
     cout << secretNumber;
     do
     {
-        guess = Limits(50, 200);
+        guess = askNumber("\nAdivina un numero ", 300);
 
         tries++;
 
@@ -39,21 +40,21 @@ int main()
             cout << "Muy Bajo\n\n";
         }
         else {
-            cout << "Excelente lo hiciste en -- " << tries << "-- intentos";
+            cout << "Excelente lo hiciste en -- " << tries << " -- intentos";
 
         }
     } while (guess != secretNumber);
 }
 
-int Limits(int min, int max)
+int askNumber(string question, int max, int min)
 {
-    int guess;
+    int number = 0;
     do
     {
-        cout << "\nEnter a guess (50-200):" << endl;
+        cout << question << "entre " << min << " y " << max << endl;
 
-        cin >> guess;
-    } while (guess > max || guess < min);
+        cin >> number;
+    } while (number > max || number < min);
 
-    return guess;
+    return number;
 }
