@@ -16,10 +16,13 @@ int askNumber(string question, int max, int min = 1);
 void InventorySimulator();
 void replay();
 
+//Parcial 3
+void examPart2();
+
 int main()
 {
     int option = 0;
-    cout << "Bienvenido, cual parcial desea ver?" << endl << "1 - Guess My Number       2 - Inventory Simulator" << endl;
+    cout << "Bienvenido, cual parcial desea ver?" << endl << "1 - Guess My Number       2 - Inventory Simulator       3 - Matriz" << endl;
     cin >> option;
 
     switch (option)
@@ -29,6 +32,9 @@ int main()
         break;
     case 2:
         InventorySimulator();
+        break;
+    case 3:
+        examPart2();
         break;
     default:
         break;
@@ -253,4 +259,42 @@ void replay()
         }
     }
     system("cls");
+}
+
+void examPart2()
+{
+    const int ROWS = 3;
+    const int COLUMNS = 4;
+    int board[ROWS][COLUMNS] = { {1, 3, 1, 4},
+                                 {9, 8, 7, 9},
+                                 {3, 2, 1, 5} };
+    int totalRC = 0;
+    int evenNumber = 0;
+    int totalEven = 0;
+
+    cout << "This is the sequence of numbers\n";
+    for (int i = 0; i < ROWS; i++)
+    {
+        for (int j = 0; j < COLUMNS; j++)
+        {
+            cout << board[i][j] << "  ";
+        }
+        cout << endl;
+    }
+
+    for (int i = 0; i < ROWS; i++)
+    {
+        for (int j = 0; j < COLUMNS; j++)
+        {
+            if ((board[i][j] % 2) == 0)
+            {
+                evenNumber += board[i][j];
+                totalRC += ((i * 10) + j);
+            }
+        }
+        cout << endl;
+    }
+    cout << "This is the total obtained by adding all even numbers in the sequence -> " << evenNumber << endl;
+    cout << "This is the total obtained by adding all positions of the even numbers in the sequence -> " << totalRC << endl;
+    cout << "\nThis is the total when substracting both totals: " << evenNumber - totalRC;
 }
